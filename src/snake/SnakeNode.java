@@ -45,4 +45,14 @@ public class SnakeNode {
         return next;
     }
 
+    /**
+     * A setter that sets the next to a given SnakeNode
+     * 
+     * @param n
+     *            The new SnakeNode
+     */
+    protected void setNext(SnakeNode n) {
+        next = n;
+    }
+
 }
