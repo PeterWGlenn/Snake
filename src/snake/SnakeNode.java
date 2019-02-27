@@ -55,4 +55,14 @@ public class SnakeNode {
         next = n;
     }
 
+    /**
+     * A setter that set the location to a given point
+     * 
+     * @param l
+     *            The new location of the SnakeNode
+     */
+    protected void setLocation(Point l) {
+        location = l;
+    }
+
 }

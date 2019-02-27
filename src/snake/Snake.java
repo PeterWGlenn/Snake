@@ -1,5 +1,7 @@
 package snake;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Point;
 
 /**
@@ -14,7 +16,7 @@ import java.awt.Point;
 public class Snake {
 
     private SnakeNode head;
-    private SnakeNode tail;
+    private SnakeNode neck;
     private int size;
 
     /**
@@ -24,8 +26,8 @@ public class Snake {
      *            The location of the head of the Snake
      */
     public Snake(Point location) {
-        tail = new SnakeNode(location, null);
-        head = new SnakeNode(location, tail);
+        head = new SnakeNode(location, null);
+        neck = new SnakeNode(location, null);
         size = 1;
     }
 
@@ -34,6 +36,30 @@ public class Snake {
      */
     public void grow() {
         size++;
+    }
+
+    /**
+     * Renders the Snake
+     * 
+     * @param g
+     *            The graphics param
+     */
+    public void render(Graphics g) {
+
+        if (neck != null) {
+            // Draw over the neck
+            g.setColor(Color.ORANGE);
+            g.fillRect((int) neck.getLocation().getX(),
+                    (int) neck.getLocation().getY(), 100, 100);
+        }
+
+        // Draw the head
+        g.setColor(Color.RED);
+        g.fillRect((int) head.getLocation().getX(),
+                (int) head.getLocation().getY(), 100, 100);
+
+        // Set neck location to current head location
+        neck.setLocation(head.getLocation());
     }
 
 }
