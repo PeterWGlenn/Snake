@@ -65,4 +65,16 @@ public class SnakeNode {
         location = l;
     }
 
+    /**
+     * A setter that set the location to a given x and y value
+     * 
+     * @param x
+     *            The new x coordinate
+     * @param y
+     *            The new y coordinate
+     */
+    protected void setLocation(double x, double y) {
+        location.setLocation(x, y);
+    }
+
 }

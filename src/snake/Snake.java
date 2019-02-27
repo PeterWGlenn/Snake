@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
+import main.World;
+
 /**
  * The snake is controlled by the player. There is exactly one snake on the
  * screen at any given time. When the snake's head collides with an apple, the
@@ -18,6 +20,7 @@ public class Snake {
     private SnakeNode head;
     private SnakeNode neck;
     private int size;
+    private int direction;
 
     /**
      * Creates a new Snake and sets its location to a point value
@@ -29,6 +32,33 @@ public class Snake {
         head = new SnakeNode(location, null);
         neck = new SnakeNode(location, null);
         size = 1;
+    }
+
+    /**
+     * Changes the location of the Snake based on its direction
+     */
+    public void move() {
+        double xStep = head.getLocation().getX();
+        double yStep = head.getLocation().getY();
+
+        // North
+        if (direction == 0 && (yStep - 1) > 0) {
+            yStep = yStep - 1;
+        }
+        // East
+        if (direction == 1 && (xStep + 1) < World.length()) {
+            xStep = xStep + 1;
+        }
+        // South
+        if (direction == 2 && (yStep + 1) < World.height()) {
+            yStep = yStep + 1;
+        }
+        // West
+        if (direction == 3 && (xStep - 1) > 0) {
+            xStep = xStep - 1;
+        }
+
+        head.setLocation(xStep, yStep);
     }
 
     /**
