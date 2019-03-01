@@ -31,7 +31,6 @@ public class SnakeNode {
      */
     public SnakeNode(Point l, SnakeNode n) {
         location = l;
-        lastLocation = location;
         next = n;
     }
 
@@ -71,7 +70,7 @@ public class SnakeNode {
      */
     protected void setLocation(Point l) {
         if (getLastLocationDistance() > Snake.snakeStep * 20) {
-            lastLocation = location;
+            lastLocation = copyPoint(location);
         }
         location = l;
     }
@@ -86,7 +85,7 @@ public class SnakeNode {
      */
     protected void setLocation(double x, double y) {
         if (getLastLocationDistance() > Snake.snakeStep * 20) {
-            lastLocation = location;
+            lastLocation = copyPoint(location);
         }
         location.setLocation(x, y);
     }
@@ -133,10 +132,12 @@ public class SnakeNode {
                 (int) location.getY() - bodyPixelSize / 2, bodyPixelSize,
                 bodyPixelSize);
 
-        g.setColor(Color.ORANGE);
-        g.fillOval((int) lastLocation.getX() - bodyPixelSize / 2,
-                (int) lastLocation.getY() - bodyPixelSize / 2, bodyPixelSize,
-                bodyPixelSize);
+        if (lastLocation != null) {
+            g.setColor(Color.ORANGE);
+            g.fillOval((int) lastLocation.getX() - bodyPixelSize / 2,
+                    (int) lastLocation.getY() - bodyPixelSize / 2,
+                    bodyPixelSize, bodyPixelSize);
+        }
     }
 
     /**
@@ -145,10 +146,26 @@ public class SnakeNode {
      * @return double
      */
     private double getLastLocationDistance() {
+
+        // Null check
+        if (lastLocation == null) {
+            return Double.MAX_VALUE;
+        }
+
         double x1 = location.getX(), y1 = location.getY(),
                 x2 = lastLocation.getX(), y2 = lastLocation.getY();
 
         return Math.sqrt(Math.pow((y2 - y1), 2) + Math.pow((x2 - x1), 2));
+    }
+
+    /**
+     * Returns a copy of a given point
+     * 
+     * @return Point
+     */
+    private Point copyPoint(Point p) {
+        Point copy = new Point(p.x, p.y);
+        return copy;
     }
 
 }

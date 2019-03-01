@@ -78,7 +78,7 @@ public class Snake {
             xStep = xStep - snakeStep;
         }
 
-        head.pull();
+        // head.pull();
         head.setLocation(xStep, yStep);
 
     }
