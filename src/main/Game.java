@@ -2,7 +2,6 @@ package main;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Point;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -27,7 +26,7 @@ public class Game extends JPanel implements Runnable {
     /**
      * The snake controlled by the player
      */
-    private static Snake snake = new Snake(new Point(WIDTH / 2, HEIGHT / 2));
+    private static Snake snake = new Snake();
 
     public Game() {
         setFocusable(true);
