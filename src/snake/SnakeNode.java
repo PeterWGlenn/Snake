@@ -2,7 +2,6 @@ package snake;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Point;
 
 import main.Game;
 
@@ -16,8 +15,8 @@ public class SnakeNode {
 
     private static final int bodyPixelSize = (int) (50 * Game.SCALE);
 
-    private Point location;
-    private Point lastLocation;
+    private Location location;
+    private Location lastLocation;
     private SnakeNode next;
 
     /**
@@ -29,27 +28,27 @@ public class SnakeNode {
      * @param n
      *            The next SnakeNode
      */
-    public SnakeNode(Point l, SnakeNode n) {
+    public SnakeNode(Location l, SnakeNode n) {
         location = l;
-        lastLocation = copyPoint(l);
+        lastLocation = l.copy();
         next = n;
     }
 
     /**
      * Returns the location of the Snake Node
      * 
-     * @return Point
+     * @return Location
      */
-    protected Point getLocation() {
+    protected Location getLocation() {
         return location;
     }
 
     /**
      * Returns the last location of the Snake Node
      * 
-     * @return Point
+     * @return Location
      */
-    protected Point getLastLocation() {
+    protected Location getLastLocation() {
         return lastLocation;
     }
 
@@ -78,9 +77,9 @@ public class SnakeNode {
      * @param l
      *            The new location of the SnakeNode
      */
-    protected void setLocation(Point l) {
+    protected void setLocation(Location l) {
         if (getLastLocationDistance() > Snake.snakeStep) {
-            lastLocation = copyPoint(location);
+            lastLocation = location.copy();
         }
         location = l;
     }
@@ -95,7 +94,7 @@ public class SnakeNode {
      */
     protected void setLocation(double x, double y) {
         if (getLastLocationDistance() > Snake.snakeStep) {
-            lastLocation = copyPoint(location);
+            lastLocation = location.copy();
         }
         location.setLocation(x, y);
     }
@@ -111,7 +110,7 @@ public class SnakeNode {
         }
 
         if (nextDistance() > Snake.snakeStep) {
-            next.setLocation(copyPoint(lastLocation));
+            next.setLocation(lastLocation.copy());
             next.pull();
         }
     }
@@ -164,16 +163,6 @@ public class SnakeNode {
                 x2 = lastLocation.getX(), y2 = lastLocation.getY();
 
         return Math.sqrt(Math.pow((y2 - y1), 2) + Math.pow((x2 - x1), 2));
-    }
-
-    /**
-     * Returns a copy of a given point
-     * 
-     * @return Point
-     */
-    private Point copyPoint(Point p) {
-        Point copy = new Point(p.x, p.y);
-        return copy;
     }
 
 }

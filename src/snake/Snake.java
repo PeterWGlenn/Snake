@@ -1,7 +1,6 @@
 package snake;
 
 import java.awt.Graphics;
-import java.awt.Point;
 
 import main.Game;
 import main.World;
@@ -21,8 +20,8 @@ public class Snake {
      * The amount of pixels the Snake can move in one tick
      */
     protected static final int snakeStep = (int) (6 * Game.SCALE);
-    protected static final Point snakeStartingPoint = new Point(Game.WIDTH / 2,
-            Game.HEIGHT / 2);
+    protected static final Location snakeStartingLocation = new Location(
+            Game.WIDTH / 2, Game.HEIGHT / 2);
 
     private SnakeNode head;
     private SnakeNode tail;
@@ -36,7 +35,7 @@ public class Snake {
      *            The location of the head of the Snake
      */
     public Snake() {
-        head = new SnakeNode(snakeStartingPoint, null);
+        head = new SnakeNode(snakeStartingLocation.copy(), null);
         tail = head;
         size = 0;
         direction = -1;
@@ -133,7 +132,7 @@ public class Snake {
      * Kills the snake and spawns another
      */
     protected void die() {
-        head = new SnakeNode(snakeStartingPoint, null);
+        head = new SnakeNode(snakeStartingLocation.copy(), null);
         tail = head;
         size = 0;
         direction = -1;

@@ -40,6 +40,9 @@ public class KeyboardInput extends KeyAdapter implements KeyListener {
                 snake.grow();
             }
         }
+        if (c == KeyEvent.VK_K) {
+            snake.die();
+        }
 
     }
 

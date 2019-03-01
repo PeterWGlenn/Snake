@@ -15,7 +15,7 @@ public class Game extends JPanel implements Runnable {
 
     private static boolean isRunning;
 
-    public static final double SCALE = 0.5;
+    public static final double SCALE = .9;
     public static final int WIDTH = (int) (2500 * SCALE);
     public static final int HEIGHT = (int) (1500 * SCALE);
     public static final int FPS = 60;
