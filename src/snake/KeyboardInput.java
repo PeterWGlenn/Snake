@@ -36,9 +36,7 @@ public class KeyboardInput extends KeyAdapter implements KeyListener {
 
         // Debug
         if (c == KeyEvent.VK_G) {
-            for (int i = 0; i < 10; i++) {
-                snake.grow();
-            }
+            snake.grow();
         }
         if (c == KeyEvent.VK_K) {
             snake.die();

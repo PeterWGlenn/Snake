@@ -40,4 +40,23 @@ public class Location extends Point {
         return copy;
     }
 
+    /**
+     * Gets the distance between two locations as a double
+     * 
+     * @param l
+     *            The second location
+     * @return Double
+     */
+    public double distance(Location l) {
+
+        // Null check
+        if (l == null) {
+            return -1.0;
+        }
+
+        double x1 = getX(), y1 = getY(), x2 = l.getX(), y2 = l.getY();
+
+        return Math.sqrt(Math.pow((y2 - y1), 2) + Math.pow((x2 - x1), 2));
+    }
+
 }

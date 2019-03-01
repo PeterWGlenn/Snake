@@ -78,9 +78,7 @@ public class SnakeNode {
      *            The new location of the SnakeNode
      */
     protected void setLocation(Location l) {
-        if (getLastLocationDistance() > Snake.snakeStep) {
-            lastLocation = location.copy();
-        }
+        lastLocation = location.copy();
         location = l;
     }
 
@@ -93,9 +91,7 @@ public class SnakeNode {
      *            The new y coordinate
      */
     protected void setLocation(double x, double y) {
-        if (getLastLocationDistance() > Snake.snakeStep) {
-            lastLocation = location.copy();
-        }
+        lastLocation = location.copy();
         location.setLocation(x, y);
     }
 
@@ -121,16 +117,7 @@ public class SnakeNode {
      * @return double
      */
     protected double nextDistance() {
-
-        // Null check
-        if (next.location == null) {
-            return Double.MIN_VALUE;
-        }
-
-        double x1 = location.getX(), y1 = location.getY(),
-                x2 = next.location.getX(), y2 = next.location.getY();
-
-        return Math.sqrt(Math.pow((y2 - y1), 2) + Math.pow((x2 - x1), 2));
+        return location.distance(next.location);
     }
 
     /**
@@ -153,16 +140,16 @@ public class SnakeNode {
      * @return double
      */
     private double getLastLocationDistance() {
+        return location.distance(lastLocation);
+    }
 
-        // Null check
-        if (lastLocation == null) {
-            return Double.MAX_VALUE;
-        }
-
-        double x1 = location.getX(), y1 = location.getY(),
-                x2 = lastLocation.getX(), y2 = lastLocation.getY();
-
-        return Math.sqrt(Math.pow((y2 - y1), 2) + Math.pow((x2 - x1), 2));
+    /**
+     * Gets the size of the body segment
+     * 
+     * @return int
+     */
+    public int size() {
+        return bodyPixelSize;
     }
 
 }

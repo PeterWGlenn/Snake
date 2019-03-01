@@ -47,6 +47,7 @@ public class Snake {
      */
     public void update() {
         move();
+        // checkHeadCollideWithTail();
     }
 
     /**
@@ -91,10 +92,35 @@ public class Snake {
 
         size++;
 
-        SnakeNode newNode = new SnakeNode(tail.getLastLocation(), null);
+        // Add SnakeNodes to the end of the Snake
+        for (int i = 0; i < 8; i++) {
+            SnakeNode newNode = new SnakeNode(tail.getLastLocation(), null);
 
-        tail.setNext(newNode);
-        tail = newNode;
+            tail.setNext(newNode);
+            tail = newNode;
+        }
+
+    }
+
+    /**
+     * If the head collides with the tail, the snake is killed with the die()
+     * method
+     */
+    public void checkHeadCollideWithTail() {
+
+        // Loop through the Snake, starting with the Node after head
+        if (size > 1) {
+            SnakeNode dummy = head.next().next().next();
+            while (dummy != null) {
+
+                double dist = head.getLocation().distance(dummy.getLocation());
+                if (dist < head.size()) {
+                    die();
+                }
+
+                dummy = dummy.next();
+            }
+        }
 
     }
 
