@@ -2,8 +2,8 @@ package main;
 
 public class World {
 
-    private static int length;
-    private static int height;
+    private static int length = Game.WIDTH - 20;
+    private static int height = Game.HEIGHT - 20;
 
     public static int length() {
         return length;

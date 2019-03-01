@@ -7,6 +7,7 @@ import java.awt.Point;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import snake.KeyboardInput;
 import snake.Snake;
 
 public class Game extends JPanel implements Runnable {
@@ -23,6 +24,9 @@ public class Game extends JPanel implements Runnable {
     private static Game gameComponent = new Game();
     private static JFrame frame = new JFrame();
 
+    /**
+     * The snake controlled by the player
+     */
     private static Snake snake = new Snake(new Point(WIDTH / 2, HEIGHT / 2));
 
     public Game() {
@@ -90,7 +94,7 @@ public class Game extends JPanel implements Runnable {
         frame.add(gameComponent);
 
         // Keyboard Input
-        // frame.addKeyListener(new KeyboardInput());
+        frame.addKeyListener(new KeyboardInput(snake));
 
         // Spawn Snake and Apple
         // Blob.reset();

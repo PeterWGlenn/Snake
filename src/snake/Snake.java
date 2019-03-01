@@ -1,6 +1,5 @@
 package snake;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
@@ -18,10 +17,13 @@ import main.World;
  */
 public class Snake {
 
-    private static int bodyPixelSize = (int) (50 * Game.SCALE);
+    /**
+     * The amount of pixels the Snake can move in one tick
+     */
+    protected static final int snakeStep = (int) (6 * Game.SCALE);
 
     private SnakeNode head;
-    private SnakeNode neck;
+    private SnakeNode tail;
     private int size;
     private int direction;
 
@@ -33,8 +35,8 @@ public class Snake {
      */
     public Snake(Point location) {
         head = new SnakeNode(location, null);
-        neck = new SnakeNode(location, null);
-        size = 1;
+        tail = head;
+        size = 10;
         direction = -1;
     }
 
@@ -50,6 +52,7 @@ public class Snake {
      * Changes the location of the Snake based on its direction
      */
     public void move() {
+
         double xStep = head.getLocation().getX();
         double yStep = head.getLocation().getY();
 
@@ -59,30 +62,42 @@ public class Snake {
         }
 
         // North
-        if (direction == 0 && (yStep - 1) > 0) {
-            yStep = yStep - 1;
+        if (direction == 0 && (yStep - snakeStep) > 0) {
+            yStep = yStep - snakeStep;
         }
         // East
-        if (direction == 1 && (xStep + 1) < World.length()) {
-            xStep = xStep + 1;
+        if (direction == 1 && (xStep + snakeStep) < World.length()) {
+            xStep = xStep + snakeStep;
         }
         // South
-        if (direction == 2 && (yStep + 1) < World.height()) {
-            yStep = yStep + 1;
+        if (direction == 2 && (yStep + snakeStep) < World.height()) {
+            yStep = yStep + snakeStep;
         }
         // West
-        if (direction == 3 && (xStep - 1) > 0) {
-            xStep = xStep - 1;
+        if (direction == 3 && (xStep - snakeStep) > 0) {
+            xStep = xStep - snakeStep;
         }
 
+        head.pull();
         head.setLocation(xStep, yStep);
+
     }
 
     /**
      * Increases the size of the Snake by 1
      */
     public void grow() {
+
         size++;
+
+        int offsetX = tail.getLocation().x;
+        int offsetY = tail.getLocation().y;
+
+        SnakeNode newNode = new SnakeNode(new Point(offsetX, offsetY), null);
+
+        tail.setNext(newNode);
+        tail = newNode;
+
     }
 
     /**
@@ -93,21 +108,26 @@ public class Snake {
      */
     public void render(Graphics g) {
 
-        if (neck != null) {
-            // Draw over the neck
-            g.setColor(Color.LIGHT_GRAY);
-            g.fillRect((int) neck.getLocation().getX(),
-                    (int) neck.getLocation().getY(), bodyPixelSize,
-                    bodyPixelSize);
+        // Draw the body
+        SnakeNode dummy = head.next();
+        while (dummy != null) {
+            dummy.render(g);
+            dummy = dummy.next();
         }
 
         // Draw the head
-        g.setColor(Color.GREEN);
-        g.fillRect((int) head.getLocation().getX(),
-                (int) head.getLocation().getY(), bodyPixelSize, bodyPixelSize);
+        head.render(g);
 
-        // Set neck location to current head location
-        neck.setLocation(head.getLocation());
+    }
+
+    /**
+     * Allows the KeyboardInput class to set the direction of the Snake
+     * 
+     * @param d
+     *            The new direction represented by an int
+     */
+    protected void setDirection(int d) {
+        direction = d;
     }
 
 }
