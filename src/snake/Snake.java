@@ -78,7 +78,7 @@ public class Snake {
             xStep = xStep - snakeStep;
         }
 
-        // head.pull();
+        head.pull();
         head.setLocation(xStep, yStep);
 
     }
@@ -90,10 +90,7 @@ public class Snake {
 
         size++;
 
-        int offsetX = tail.getLocation().x;
-        int offsetY = tail.getLocation().y;
-
-        SnakeNode newNode = new SnakeNode(new Point(offsetX, offsetY), null);
+        SnakeNode newNode = new SnakeNode(tail.getLastLocation(), null);
 
         tail.setNext(newNode);
         tail = newNode;

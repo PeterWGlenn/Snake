@@ -31,6 +31,7 @@ public class SnakeNode {
      */
     public SnakeNode(Point l, SnakeNode n) {
         location = l;
+        lastLocation = copyPoint(l);
         next = n;
     }
 
@@ -41,6 +42,15 @@ public class SnakeNode {
      */
     protected Point getLocation() {
         return location;
+    }
+
+    /**
+     * Returns the last location of the Snake Node
+     * 
+     * @return Point
+     */
+    protected Point getLastLocation() {
+        return lastLocation;
     }
 
     /**
@@ -69,7 +79,7 @@ public class SnakeNode {
      *            The new location of the SnakeNode
      */
     protected void setLocation(Point l) {
-        if (getLastLocationDistance() > Snake.snakeStep * 20) {
+        if (getLastLocationDistance() > Snake.snakeStep) {
             lastLocation = copyPoint(location);
         }
         location = l;
@@ -84,7 +94,7 @@ public class SnakeNode {
      *            The new y coordinate
      */
     protected void setLocation(double x, double y) {
-        if (getLastLocationDistance() > Snake.snakeStep * 20) {
+        if (getLastLocationDistance() > Snake.snakeStep) {
             lastLocation = copyPoint(location);
         }
         location.setLocation(x, y);
@@ -100,10 +110,10 @@ public class SnakeNode {
             return;
         }
 
-        // if (nextDistance() > Snake.snakeStep / 4) {
-        next.location = lastLocation;
-        next.pull();
-        // }
+        if (nextDistance() > Snake.snakeStep) {
+            next.setLocation(copyPoint(lastLocation));
+            next.pull();
+        }
     }
 
     /**
@@ -112,6 +122,11 @@ public class SnakeNode {
      * @return double
      */
     protected double nextDistance() {
+
+        // Null check
+        if (next.location == null) {
+            return Double.MIN_VALUE;
+        }
 
         double x1 = location.getX(), y1 = location.getY(),
                 x2 = next.location.getX(), y2 = next.location.getY();
@@ -131,13 +146,6 @@ public class SnakeNode {
         g.fillOval((int) location.getX() - bodyPixelSize / 2,
                 (int) location.getY() - bodyPixelSize / 2, bodyPixelSize,
                 bodyPixelSize);
-
-        if (lastLocation != null) {
-            g.setColor(Color.ORANGE);
-            g.fillOval((int) lastLocation.getX() - bodyPixelSize / 2,
-                    (int) lastLocation.getY() - bodyPixelSize / 2,
-                    bodyPixelSize, bodyPixelSize);
-        }
     }
 
     /**
