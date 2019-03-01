@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
+import main.Game;
 import main.World;
 
 /**
@@ -16,6 +17,8 @@ import main.World;
  * @version 2.24.2019
  */
 public class Snake {
+
+    private static int bodyPixelSize = (int) (50 * Game.SCALE);
 
     private SnakeNode head;
     private SnakeNode neck;
@@ -32,6 +35,15 @@ public class Snake {
         head = new SnakeNode(location, null);
         neck = new SnakeNode(location, null);
         size = 1;
+        direction = -1;
+    }
+
+    /**
+     * The update method moves the snake and tests if he is close enough to the
+     * apple to eat it.
+     */
+    public void update() {
+        move();
     }
 
     /**
@@ -40,6 +52,11 @@ public class Snake {
     public void move() {
         double xStep = head.getLocation().getX();
         double yStep = head.getLocation().getY();
+
+        // Stopped
+        if (direction == -1) {
+            return;
+        }
 
         // North
         if (direction == 0 && (yStep - 1) > 0) {
@@ -78,15 +95,16 @@ public class Snake {
 
         if (neck != null) {
             // Draw over the neck
-            g.setColor(Color.ORANGE);
+            g.setColor(Color.LIGHT_GRAY);
             g.fillRect((int) neck.getLocation().getX(),
-                    (int) neck.getLocation().getY(), 100, 100);
+                    (int) neck.getLocation().getY(), bodyPixelSize,
+                    bodyPixelSize);
         }
 
         // Draw the head
-        g.setColor(Color.RED);
+        g.setColor(Color.GREEN);
         g.fillRect((int) head.getLocation().getX(),
-                (int) head.getLocation().getY(), 100, 100);
+                (int) head.getLocation().getY(), bodyPixelSize, bodyPixelSize);
 
         // Set neck location to current head location
         neck.setLocation(head.getLocation());

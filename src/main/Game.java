@@ -2,9 +2,12 @@ package main;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Point;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import snake.Snake;
 
 public class Game extends JPanel implements Runnable {
 
@@ -12,13 +15,15 @@ public class Game extends JPanel implements Runnable {
 
     private static boolean isRunning;
 
-    public static final double SCALE = 0.8;
+    public static final double SCALE = 0.5;
     public static final int WIDTH = (int) (2500 * SCALE);
     public static final int HEIGHT = (int) (1500 * SCALE);
     public static final int FPS = 60;
 
     private static Game gameComponent = new Game();
     private static JFrame frame = new JFrame();
+
+    private static Snake snake = new Snake(new Point(WIDTH / 2, HEIGHT / 2));
 
     public Game() {
         setFocusable(true);
@@ -42,7 +47,11 @@ public class Game extends JPanel implements Runnable {
 
             try {
 
-                // do things
+                // Update Snake
+                snake.update();
+
+                // Repaint
+                repaint();
 
                 double tick = 1000.0 / FPS;
                 Thread.sleep((long) tick);
@@ -63,6 +72,7 @@ public class Game extends JPanel implements Runnable {
         // world.render(g);
 
         // Paint Snake
+        snake.render(g);
 
         // Paint Apples
 
