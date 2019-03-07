@@ -66,19 +66,23 @@ public class Snake {
         }
 
         // North
-        if (direction == 0 && (yStep - snakeStep) > colBox) {
+        if (direction == 0
+                && (yStep - snakeStep) > World.wallWidth() + colBox) {
             yStep = yStep - snakeStep;
         }
         // East
-        if (direction == 1 && (xStep + snakeStep) < World.length()) {
+        if (direction == 1 && (xStep + snakeStep) < World.length()
+                - World.wallWidth() - colBox) {
             xStep = xStep + snakeStep;
         }
         // South
-        if (direction == 2 && (yStep + snakeStep) < World.height() - colBox) {
+        if (direction == 2 && (yStep + snakeStep) < World.height()
+                - World.wallWidth() - colBox) {
             yStep = yStep + snakeStep;
         }
         // West
-        if (direction == 3 && (xStep - snakeStep) > colBox) {
+        if (direction == 3
+                && (xStep - snakeStep) > World.wallWidth() + colBox) {
             xStep = xStep - snakeStep;
         }
 

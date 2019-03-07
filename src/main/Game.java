@@ -28,6 +28,11 @@ public class Game extends JPanel implements Runnable {
      */
     private static Snake snake = new Snake();
 
+    /**
+     * The world of the game
+     */
+    private static World world = new World();
+
     public Game() {
         setFocusable(true);
         requestFocus();
@@ -80,7 +85,7 @@ public class Game extends JPanel implements Runnable {
         super.paintComponent(g);
 
         // Paint World
-        // world.render(g);
+        world.render(g);
 
         // Paint Snake
         snake.render(g);
