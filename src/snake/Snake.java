@@ -58,13 +58,15 @@ public class Snake {
         double xStep = head.getLocation().getX();
         double yStep = head.getLocation().getY();
 
+        double colBox = head.size() / 2;
+
         // Stopped
         if (direction == -1) {
             return;
         }
 
         // North
-        if (direction == 0 && (yStep - snakeStep) > 0) {
+        if (direction == 0 && (yStep - snakeStep) > colBox) {
             yStep = yStep - snakeStep;
         }
         // East
@@ -72,11 +74,11 @@ public class Snake {
             xStep = xStep + snakeStep;
         }
         // South
-        if (direction == 2 && (yStep + snakeStep) < World.height()) {
+        if (direction == 2 && (yStep + snakeStep) < World.height() - colBox) {
             yStep = yStep + snakeStep;
         }
         // West
-        if (direction == 3 && (xStep - snakeStep) > 0) {
+        if (direction == 3 && (xStep - snakeStep) > colBox) {
             xStep = xStep - snakeStep;
         }
 

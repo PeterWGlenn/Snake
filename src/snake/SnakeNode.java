@@ -132,6 +132,9 @@ public class SnakeNode {
         g.fillOval((int) location.getX() - bodyPixelSize / 2,
                 (int) location.getY() - bodyPixelSize / 2, bodyPixelSize,
                 bodyPixelSize);
+
+        g.setColor(Color.BLACK);
+        g.fillOval((int) location.getX(), (int) location.getY(), 4, 4);
     }
 
     /**
