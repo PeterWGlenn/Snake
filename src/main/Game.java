@@ -47,21 +47,35 @@ public class Game extends JPanel implements Runnable {
     private static Apple apple = new Apple();
     private static ScoreCounter scoreCounter = new ScoreCounter(snake);
 
+    /**
+     * Initializes a new Game object
+     */
     public Game() {
         setFocusable(true);
         requestFocus();
         start();
     }
 
+    /**
+     * Starts the game by setting isRunning to true.
+     */
     public void start() {
         isRunning = true;
         new Thread(this).start();
     }
 
+    /**
+     * Quits the game loop by setting isRunning to false.
+     */
     public void stop() {
         isRunning = false;
     }
 
+    /**
+     * The main game loop updates the snake object, repaints all the objects,
+     * and then waits for an appropriate amount of ticks. The loop breaks when
+     * isRunning is false.
+     */
     @Override
     public void run() {
 
@@ -76,7 +90,6 @@ public class Game extends JPanel implements Runnable {
                 repaint();
 
                 double tick = 1000.0 / FPS;
-
                 Thread.sleep((long) tick);
 
             }
@@ -87,6 +100,13 @@ public class Game extends JPanel implements Runnable {
 
     }
 
+    /**
+     * Renders the world, snake, apple, and scoreCounter for a particular
+     * graphics
+     * 
+     * @param g
+     *            The graphics to render to
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -105,6 +125,12 @@ public class Game extends JPanel implements Runnable {
 
     }
 
+    /**
+     * The main method sets up the frame for the Game and adds a key listener
+     * 
+     * @param args
+     *            The arguments
+     */
     public static void main(String[] args) {
         Dimension size = new Dimension(WIDTH, HEIGHT);
         frame.setTitle("Snake");
