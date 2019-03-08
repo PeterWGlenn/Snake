@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import snake.KeyboardInput;
+import snake.ScoreCounter;
 import snake.Snake;
 
 /**

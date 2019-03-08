@@ -1,10 +1,11 @@
-package main;
+package snake;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
-import snake.Snake;
+import main.Game;
+import main.World;
 
 /**
  * Renders and updates a text box that holds the score of the player
