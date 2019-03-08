@@ -67,29 +67,22 @@ public class Game extends JPanel implements Runnable {
 
         while (isRunning) {
 
-            // try {
-
-            // Update Snake
-            snake.update(apple);
-
-            // Repaint
-            repaint();
-
-            double tick = 1000.0 / FPS;
-
-            // test
             try {
-                Thread.sleep((long) tick);
-            }
-            catch (InterruptedException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
 
-            // }
-            // catch (Exception e) {
-            // System.out.println("Game loop exception: " + e.toString());
-            // }
+                // Update Snake
+                snake.update(apple);
+
+                // Repaint
+                repaint();
+
+                double tick = 1000.0 / FPS;
+
+                Thread.sleep((long) tick);
+
+            }
+            catch (Exception e) {
+                System.out.println("Game loop exception: " + e.toString());
+            }
         }
 
     }
