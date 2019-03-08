@@ -14,12 +14,12 @@ import snake.Snake;
  */
 public class Apple {
 
-    private static final int appleSize = 50;
+    private static final int appleSize = (int) (50 * Game.SCALE);
 
-    private static final int minX = appleSize / 2;
+    private static final int minX = appleSize / 2 + World.wallWidth();
     private static final int maxX = World.length() - World.wallWidth()
             - (appleSize / 2);
-    private static final int minY = appleSize / 2;
+    private static final int minY = appleSize / 2 + World.wallWidth();
     private static final int maxY = World.height() - World.wallWidth()
             - (appleSize / 2);
 
@@ -66,6 +66,15 @@ public class Apple {
         g.fillOval(location.x - (appleSize / 2), location.y - (appleSize / 2),
                 appleSize, appleSize);
 
+    }
+
+    /**
+     * Returns the apple size
+     * 
+     * @return int
+     */
+    public static int size() {
+        return appleSize;
     }
 
 }

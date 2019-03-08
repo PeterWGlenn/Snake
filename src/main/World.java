@@ -35,7 +35,7 @@ public class World {
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, length, height);
 
-        g.setColor(Color.GRAY);
+        g.setColor(Color.DARK_GRAY);
         g.fillRect(wallWidth, wallWidth, length - 2 * wallWidth,
                 height - 2 * wallWidth);
     }

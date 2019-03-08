@@ -38,6 +38,11 @@ public class Game extends JPanel implements Runnable {
      */
     private static Apple apple = new Apple();
 
+    /**
+     * The score counter for the snake
+     */
+    private static ScoreCounter scoreCounter = new ScoreCounter(snake);
+
     public Game() {
         setFocusable(true);
         requestFocus();
@@ -98,7 +103,9 @@ public class Game extends JPanel implements Runnable {
         // Paint Apples
         apple.render(g);
 
-        // Paint Text Area
+        // Paint Score Counter
+        scoreCounter.render(g);
+
     }
 
     public static void main(String[] args) {
@@ -113,9 +120,6 @@ public class Game extends JPanel implements Runnable {
 
         // Keyboard Input
         frame.addKeyListener(new KeyboardInput(snake));
-
-        // Spawn Snake and Apple
-        // Blob.reset();
     }
 
 }

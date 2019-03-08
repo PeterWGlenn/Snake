@@ -50,7 +50,7 @@ public class Snake {
     public void update(Apple apple) {
         move();
         checkHeadCollideWithApple(apple);
-        // checkHeadCollideWithTail();
+        checkHeadCollideWithTail();
     }
 
     /**
@@ -142,7 +142,13 @@ public class Snake {
 
         // Loop through the Snake, starting with the Node after head
         if (size > 1) {
-            SnakeNode dummy = head.next().next().next();
+            SnakeNode dummy = head.next();
+
+            // Deal with naturally colliding Nodes
+            for (int i = 0; i < (head.size() / snakeStep); i++) {
+                dummy = dummy.next();
+            }
+
             while (dummy != null) {
 
                 double dist = head.getLocation().distance(dummy.getLocation());
@@ -165,7 +171,7 @@ public class Snake {
     public void checkHeadCollideWithApple(Apple apple) {
 
         double dist = head.getLocation().distance(apple.getLocation());
-        if (dist < head.size()) {
+        if (dist < (head.size() / 2) + (Apple.size() / 2)) {
             apple.eat(this);
         }
 
@@ -175,7 +181,7 @@ public class Snake {
      * Renders the Snake
      * 
      * @param g
-     *            The graphics param
+     *            The graphics parameter
      */
     public void render(Graphics g) {
 
@@ -209,6 +215,15 @@ public class Snake {
         tail = head;
         size = 0;
         direction = -1;
+    }
+
+    /**
+     * Gets the size of the Snake
+     * 
+     * @return int
+     */
+    public int size() {
+        return size;
     }
 
 }
