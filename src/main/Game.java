@@ -61,7 +61,7 @@ public class Game extends JPanel implements Runnable {
             // try {
 
             // Update Snake
-            snake.update();
+            snake.update(apple);
 
             // Repaint
             repaint();

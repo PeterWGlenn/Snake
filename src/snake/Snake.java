@@ -2,6 +2,7 @@ package snake;
 
 import java.awt.Graphics;
 
+import main.Apple;
 import main.Game;
 import main.Location;
 import main.World;
@@ -46,8 +47,9 @@ public class Snake {
      * The update method moves the snake and tests if he is close enough to the
      * apple to eat it.
      */
-    public void update() {
+    public void update(Apple apple) {
         move();
+        checkHeadCollideWithApple(apple);
         // checkHeadCollideWithTail();
     }
 
@@ -150,6 +152,21 @@ public class Snake {
 
                 dummy = dummy.next();
             }
+        }
+
+    }
+
+    /**
+     * If the head collides with the apple, the apple is eaten by the snake
+     * 
+     * @param apple
+     *            The apple to be eaten
+     */
+    public void checkHeadCollideWithApple(Apple apple) {
+
+        double dist = head.getLocation().distance(apple.getLocation());
+        if (dist < head.size()) {
+            apple.eat(this);
         }
 
     }

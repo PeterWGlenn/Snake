@@ -14,7 +14,7 @@ import snake.Snake;
  */
 public class Apple {
 
-    private static final int appleSize = 80;
+    private static final int appleSize = 50;
 
     private static final int minX = appleSize / 2;
     private static final int maxX = World.length() - World.wallWidth()
