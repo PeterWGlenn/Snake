@@ -1,5 +1,6 @@
 package snake;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import main.Apple;
@@ -29,15 +30,29 @@ public class Snake {
     private SnakeNode tail;
     private int size;
     private int direction;
+    private Color color;
 
     /**
-     * Creates a new Snake and sets its location to a point value
-     * 
-     * @param location
-     *            The location of the head of the Snake
+     * Creates a new Snake
      */
     public Snake() {
-        head = new SnakeNode(snakeStartingLocation.copy(), null);
+        color = Color.GREEN;
+        head = new SnakeNode(snakeStartingLocation.copy(), null, color);
+        tail = head;
+        size = 0;
+        direction = -1;
+    }
+
+    /**
+     * Creates a new Snake and sets its location to a point value. Also sets the
+     * color of the snake.
+     * 
+     * @param c
+     *            The color of the Snake
+     */
+    public Snake(Color c) {
+        color = c;
+        head = new SnakeNode(snakeStartingLocation.copy(), null, color);
         tail = head;
         size = 0;
         direction = -1;
@@ -126,7 +141,8 @@ public class Snake {
 
         // Add SnakeNodes to the end of the Snake
         for (int i = 0; i < 8; i++) {
-            SnakeNode newNode = new SnakeNode(tail.getLastLocation(), null);
+            SnakeNode newNode = new SnakeNode(tail.getLastLocation(), null,
+                    color);
 
             tail.setNext(newNode);
             tail = newNode;
@@ -211,7 +227,7 @@ public class Snake {
      * Kills the snake and spawns another
      */
     protected void die() {
-        head = new SnakeNode(snakeStartingLocation.copy(), null);
+        head = new SnakeNode(snakeStartingLocation.copy(), null, color);
         tail = head;
         size = 0;
         direction = -1;

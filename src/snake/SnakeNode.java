@@ -19,6 +19,7 @@ public class SnakeNode {
     private Location location;
     private Location lastLocation;
     private SnakeNode next;
+    private Color color;
 
     /**
      * The constructor for SnakeNode that stores a location and next value for a
@@ -28,11 +29,14 @@ public class SnakeNode {
      *            The location
      * @param n
      *            The next SnakeNode
+     * @param c
+     *            The color of the SnakeNode
      */
-    public SnakeNode(Location l, SnakeNode n) {
+    public SnakeNode(Location l, SnakeNode n, Color c) {
         location = l;
         lastLocation = l.copy();
         next = n;
+        color = c;
     }
 
     /**
@@ -129,7 +133,7 @@ public class SnakeNode {
      */
     public void render(Graphics g) {
 
-        g.setColor(Color.GREEN);
+        g.setColor(color);
         g.fillOval((int) location.getX() - bodyPixelSize / 2,
                 (int) location.getY() - bodyPixelSize / 2, bodyPixelSize,
                 bodyPixelSize);
