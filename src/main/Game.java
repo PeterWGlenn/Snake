@@ -22,15 +22,15 @@ public class Game extends JPanel implements Runnable {
     /**
      * The scale at which the game is rendered
      */
-    public static final double SCALE = 1;
+    public static final double SCALE = 1.0;
     /**
      * The width of the frame in pixels
      */
-    public static final int WIDTH = (int) (2500 * SCALE);
+    public static final int WIDTH = (int) (1920 * SCALE);
     /**
      * The height of the frame in pixels
      */
-    public static final int HEIGHT = (int) (1500 * SCALE);
+    public static final int HEIGHT = (int) (1080 * SCALE);
     /**
      * The frames per second of the game
      */
