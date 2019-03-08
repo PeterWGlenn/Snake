@@ -4,14 +4,34 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * The KeyboardInput class tests for key presses and updates the Snake
+ * accordingly.
+ * 
+ * @author Peter Glenn
+ * @version 3.7.19
+ *
+ */
 public class KeyboardInput extends KeyAdapter implements KeyListener {
 
     private Snake snake;
 
+    /**
+     * Construct a new KeyboardInput for a given Snake
+     * 
+     * @param n
+     *            The Snake that gets updated by the keyboard input
+     */
     public KeyboardInput(Snake n) {
         snake = n;
     }
 
+    /**
+     * Tests for certain key presses and moves the Snake field
+     * 
+     * @param e
+     *            The KeyEvent
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         super.keyPressed(e);
