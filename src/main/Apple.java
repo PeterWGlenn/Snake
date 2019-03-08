@@ -1,6 +1,9 @@
 package main;
 
-import java.awt.Point;
+import java.awt.Color;
+import java.awt.Graphics;
+
+import snake.Snake;
 
 /**
  * The Apple class manages an apple that spawns every time the snake eats an
@@ -11,7 +14,16 @@ import java.awt.Point;
  */
 public class Apple {
 
-    private Point location;
+    private static final int appleSize = 80;
+
+    private static final int minX = appleSize / 2;
+    private static final int maxX = World.length() - World.wallWidth()
+            - (appleSize / 2);
+    private static final int minY = appleSize / 2;
+    private static final int maxY = World.height() - World.wallWidth()
+            - (appleSize / 2);
+
+    private Location location;
 
     /**
      * Creates an apple at some point p
@@ -19,8 +31,8 @@ public class Apple {
      * @param p
      *            The location of the apple
      */
-    public Apple(Point p) {
-        location = p;
+    public Apple() {
+        location = Location.randomLocation(maxX, minX, maxY, minY);
     }
 
     /**
@@ -28,8 +40,32 @@ public class Apple {
      * 
      * @return Point
      */
-    public Point getLocation() {
+    public Location getLocation() {
         return location;
+    }
+
+    /**
+     * Moves the apple's location
+     */
+    public void eat(Snake snake) {
+
+        location = Location.randomLocation(maxX, minX, maxY, minY);
+        snake.grow();
+
+    }
+
+    /**
+     * Renders an apple
+     * 
+     * @param g
+     *            The graphics
+     */
+    public void render(Graphics g) {
+
+        g.setColor(Color.RED);
+        g.fillOval(location.x - (appleSize / 2), location.y - (appleSize / 2),
+                appleSize, appleSize);
+
     }
 
 }

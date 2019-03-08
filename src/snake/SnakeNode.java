@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import main.Game;
+import main.Location;
 
 /**
  * A data type to represent the body of the snake.

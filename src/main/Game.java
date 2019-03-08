@@ -33,6 +33,11 @@ public class Game extends JPanel implements Runnable {
      */
     private static World world = new World();
 
+    /**
+     * The apple of the game
+     */
+    private static Apple apple = new Apple();
+
     public Game() {
         setFocusable(true);
         requestFocus();
@@ -91,6 +96,7 @@ public class Game extends JPanel implements Runnable {
         snake.render(g);
 
         // Paint Apples
+        apple.render(g);
 
         // Paint Text Area
     }

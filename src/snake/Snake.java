@@ -3,6 +3,7 @@ package snake;
 import java.awt.Graphics;
 
 import main.Game;
+import main.Location;
 import main.World;
 
 /**
@@ -19,7 +20,7 @@ public class Snake {
     /**
      * The amount of pixels the Snake can move in one tick
      */
-    protected static final int snakeStep = (int) (6 * Game.SCALE);
+    protected static final int snakeStep = (int) (10 * Game.SCALE);
     protected static final Location snakeStartingLocation = new Location(
             Game.WIDTH / 2, Game.HEIGHT / 2);
 

@@ -1,6 +1,7 @@
-package snake;
+package main;
 
 import java.awt.Point;
+import java.util.Random;
 
 public class Location extends Point {
 
@@ -28,6 +29,30 @@ public class Location extends Point {
      */
     public Location(double x, double y) {
         super.setLocation(x, y);
+    }
+
+    /**
+     * Returns a random location given the limits of X and Y
+     * 
+     * @param maxX
+     *            The maximum X value
+     * @param minX
+     *            The minimum Y value
+     * @param maxY
+     *            The maximum Y value
+     * @param minY
+     *            The minimum Y value
+     * @return Location
+     */
+    public static Location randomLocation(int maxX, int minX, int maxY,
+            int minY) {
+
+        Random random = new Random();
+        int randX = random.nextInt(maxX - minX) + minX;
+        int randY = random.nextInt(maxY - minY) + minY;
+
+        return new Location(randX, randY);
+
     }
 
     /**
