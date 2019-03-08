@@ -3,6 +3,15 @@ package main;
 import java.awt.Point;
 import java.util.Random;
 
+/**
+ * A class which holds a location in the form of a point. However, it includes
+ * different methods like copy and getDistance to add more functionality than
+ * Point
+ * 
+ * @author Peter Glenn
+ * @version 3.7.2019
+ *
+ */
 public class Location extends Point {
 
     private static final long serialVersionUID = 1L;

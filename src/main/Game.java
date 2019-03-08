@@ -9,38 +9,41 @@ import javax.swing.JPanel;
 import snake.KeyboardInput;
 import snake.Snake;
 
+/**
+ * The Game class holds the Snake, World, and Apple objects and manages the Game
+ * clock. It updates the Snake and renders the needed object.
+ * 
+ * @author Peter Glenn
+ * @version 3.7.19
+ *
+ */
 public class Game extends JPanel implements Runnable {
 
-    private static final long serialVersionUID = 1L;
-
-    private static boolean isRunning;
-
+    /**
+     * The scale at which the game is rendered
+     */
     public static final double SCALE = 1;
+    /**
+     * The width of the frame in pixels
+     */
     public static final int WIDTH = (int) (2500 * SCALE);
+    /**
+     * The height of the frame in pixels
+     */
     public static final int HEIGHT = (int) (1500 * SCALE);
+    /**
+     * The frames per second of the game
+     */
     public static final int FPS = 60;
 
+    private static final long serialVersionUID = 1L;
+    private static boolean isRunning;
     private static Game gameComponent = new Game();
     private static JFrame frame = new JFrame();
 
-    /**
-     * The snake controlled by the player
-     */
     private static Snake snake = new Snake();
-
-    /**
-     * The world of the game
-     */
     private static World world = new World();
-
-    /**
-     * The apple of the game
-     */
     private static Apple apple = new Apple();
-
-    /**
-     * The score counter for the snake
-     */
     private static ScoreCounter scoreCounter = new ScoreCounter(snake);
 
     public Game() {

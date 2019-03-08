@@ -136,15 +136,6 @@ public class SnakeNode {
     }
 
     /**
-     * Gets the distance between the location and the last location
-     * 
-     * @return double
-     */
-    private double getLastLocationDistance() {
-        return location.distance(lastLocation);
-    }
-
-    /**
      * Gets the size of the body segment
      * 
      * @return int
