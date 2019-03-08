@@ -50,7 +50,7 @@ public class Game extends JPanel implements Runnable {
     /**
      * Initializes a new Game object
      */
-    public Game() {
+    private Game() {
         setFocusable(true);
         requestFocus();
         start();
@@ -59,7 +59,7 @@ public class Game extends JPanel implements Runnable {
     /**
      * Starts the game by setting isRunning to true.
      */
-    public void start() {
+    private void start() {
         isRunning = true;
         new Thread(this).start();
     }
@@ -67,7 +67,7 @@ public class Game extends JPanel implements Runnable {
     /**
      * Quits the game loop by setting isRunning to false.
      */
-    public void stop() {
+    private void stop() {
         isRunning = false;
     }
 
