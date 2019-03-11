@@ -224,6 +224,34 @@ public class Snake {
     }
 
     /**
+     * Checks to see if the snake will instantly run into its tail by moving in
+     * the given direction.
+     * 
+     * @param d
+     *            The next direction.
+     * @return boolean
+     */
+    protected boolean willNotDieInstantly(int d) {
+
+        if (size > 0) {
+            if (direction == 0 && d == 2) {
+                return false;
+            }
+            else if (direction == 1 && d == 3) {
+                return false;
+            }
+            else if (direction == 2 && d == 0) {
+                return false;
+            }
+            else if (direction == 3 && d == 1) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
      * Kills the snake and spawns another
      */
     protected void die() {

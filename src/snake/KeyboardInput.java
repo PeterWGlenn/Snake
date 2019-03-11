@@ -38,19 +38,23 @@ public class KeyboardInput extends KeyAdapter implements KeyListener {
         int c = e.getKeyCode();
 
         // Movement
-        if (c == KeyEvent.VK_UP || c == KeyEvent.VK_W) {
+        if ((c == KeyEvent.VK_UP || c == KeyEvent.VK_W)
+                && snake.willNotDieInstantly(0)) {
             snake.setDirection(0);
         }
 
-        if (c == KeyEvent.VK_RIGHT || c == KeyEvent.VK_D) {
+        if ((c == KeyEvent.VK_RIGHT || c == KeyEvent.VK_D)
+                && snake.willNotDieInstantly(1)) {
             snake.setDirection(1);
         }
 
-        if (c == KeyEvent.VK_DOWN || c == KeyEvent.VK_S) {
+        if ((c == KeyEvent.VK_DOWN || c == KeyEvent.VK_S)
+                && snake.willNotDieInstantly(2)) {
             snake.setDirection(2);
         }
 
-        if (c == KeyEvent.VK_LEFT || c == KeyEvent.VK_A) {
+        if ((c == KeyEvent.VK_LEFT || c == KeyEvent.VK_A)
+                && snake.willNotDieInstantly(3)) {
             snake.setDirection(3);
         }
 
