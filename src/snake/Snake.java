@@ -194,6 +194,30 @@ public class Snake {
     }
 
     /**
+     * Checks if the Snake collides with a given Location
+     * 
+     * @param l
+     *            The given Location
+     * @return boolean
+     */
+    public boolean checkSnakeCollideWithLocation(Location l) {
+
+        SnakeNode dummy = head;
+        while (dummy != null) {
+
+            double dist = dummy.getLocation().distance(l);
+            if (dist < dummy.size()) {
+                return true;
+            }
+
+            dummy = dummy.next();
+        }
+
+        return false;
+
+    }
+
+    /**
      * Renders the Snake
      * 
      * @param g

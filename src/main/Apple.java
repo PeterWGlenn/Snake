@@ -50,6 +50,11 @@ public class Apple {
     public void eat(Snake snake) {
 
         location = Location.randomLocation(maxX, minX, maxY, minY);
+
+        while (snake.checkSnakeCollideWithLocation(location)) {
+            location = Location.randomLocation(maxX, minX, maxY, minY);
+        }
+
         snake.grow();
 
     }
