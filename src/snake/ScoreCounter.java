@@ -51,13 +51,13 @@ public class ScoreCounter {
         g.setFont(font);
 
         g.drawString("Score: " + snake.size(), fromTheLeft,
-                fromTheTop + textHeight);
+                2 * fromTheTop + textHeight);
 
         if (snake.size() > highScore) {
             highScore = snake.size();
         }
         g.drawString("High Score: " + highScore, fromTheLeft,
-                2 * fromTheTop + textHeight);
+                fromTheTop + textHeight);
 
     }
 
