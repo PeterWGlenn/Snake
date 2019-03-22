@@ -20,7 +20,9 @@ public class ScoreCounter {
             + World.wallWidth();
     private static final int fromTheTop = (int) (10 * Game.SCALE)
             + World.wallWidth();
-    private static final int textHeight = (int) (75 * Game.SCALE);
+    private static final int textHeight = (int) (50 * Game.SCALE);
+
+    private static int highScore;
 
     private Snake snake;
 
@@ -32,6 +34,7 @@ public class ScoreCounter {
      */
     public ScoreCounter(Snake s) {
         snake = s;
+        highScore = 0;
     }
 
     /**
@@ -49,6 +52,12 @@ public class ScoreCounter {
 
         g.drawString("Score: " + snake.size(), fromTheLeft,
                 fromTheTop + textHeight);
+
+        if (snake.size() > highScore) {
+            highScore = snake.size();
+        }
+        g.drawString("High Score: " + highScore, fromTheLeft,
+                2 * fromTheTop + textHeight);
 
     }
 
