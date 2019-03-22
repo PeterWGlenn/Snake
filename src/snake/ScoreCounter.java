@@ -20,7 +20,7 @@ public class ScoreCounter {
             + World.wallWidth();
     private static final int fromTheTop = (int) (10 * Game.SCALE)
             + World.wallWidth();
-    private static final int textHeight = (int) (100 * Game.SCALE);
+    private static final int textHeight = (int) (75 * Game.SCALE);
 
     private Snake snake;
 
